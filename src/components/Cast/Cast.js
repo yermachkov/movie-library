@@ -23,11 +23,7 @@ export const Cast = () => {
             return (
               <li key={id}>
                 <Box display="flex" gridGap={10}>
-                  <img
-                    src={actorPhoto}
-                    alt={`A photo of ${name}`}
-                    width={150}
-                  />
+                  <img src={actorPhoto} alt={`${name}`} width={150} />
                   <div>
                     <p>{name}</p>
                     <p>Character: {character}</p>

@@ -1,15 +1,8 @@
 import { useEffect, useState } from 'react';
 import { Box } from 'components/Box';
-import {
-  Link,
-  Outlet,
-  useLocation,
-  useParams,
-  NavLink,
-} from 'react-router-dom';
+import { Link, Outlet, useParams } from 'react-router-dom';
 
 import api from 'services/movies-api';
-import { width } from 'styled-system';
 
 export const MovieDetails = () => {
   const [movie, setMovie] = useState(null);

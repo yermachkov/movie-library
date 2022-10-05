@@ -31,4 +31,10 @@ export const Link = styled(NavLink)`
     color: white;
     background-color: crimson;
   }
+
+  :hover:not(.active),
+  :focus-visible:not(.active) {
+    background-color: none;
+    color: black;
+  }
 `;

@@ -17,7 +17,7 @@ export const fetchMoviesByQuery = async query => {
     const response = await axios.get(
       `/search/movie?api_key=${API_KEY}&query=${query}`
     );
-    return response.data;
+    return response.data.results;
   } catch (error) {
     console.error(error);
   }

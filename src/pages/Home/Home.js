@@ -13,7 +13,7 @@ export const Home = () => {
   return (
     <div>
       <h1>Trending today</h1>
-      <ul>
+      <Box as="ul" display="flex" flexDirection="column" gridGap={15} mt={15}>
         {trendingList &&
           trendingList.map(({ id, title, poster_path, release_date }) => {
             const imgUrl = poster_path
@@ -44,7 +44,7 @@ export const Home = () => {
               </li>
             );
           })}
-      </ul>
+      </Box>
     </div>
   );
 };

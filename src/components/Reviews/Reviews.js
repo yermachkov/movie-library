@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import api from 'services/movies-api';
-import { Box } from 'components/Box';
 
 export const Reviews = () => {
   const [movieReviews, setMovieReviews] = useState(null);

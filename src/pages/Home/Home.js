@@ -1,10 +1,11 @@
 import { Box } from 'components/Box';
-import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import api from '../../services/movies-api';
 
 export const Home = () => {
   const [trendingList, setTrendingList] = useState(null);
+  const location = useLocation();
 
   useEffect(() => {
     api.fetchTrendingMovies().then(movies => setTrendingList(movies));
@@ -26,7 +27,7 @@ export const Home = () => {
 
             return (
               <li key={id}>
-                <Link to={`/movies/${id}`}>
+                <Link to={`/movies/${id}`} state={{ from: location }}>
                   <Box display="flex" gridGap={10}>
                     <img
                       src={imgUrl}

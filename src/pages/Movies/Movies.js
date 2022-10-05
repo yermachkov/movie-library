@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { useSearchParams, NavLink } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { useSearchParams, NavLink, useLocation } from 'react-router-dom';
 import api from 'services/movies-api';
 import { Box } from 'components/Box';
 
@@ -7,19 +7,29 @@ export const Movies = () => {
   const [movieList, setMovieList] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams();
   const [movieName, setMovieName] = useState(searchParams.get('query') ?? '');
+  const location = useLocation();
+
+  useEffect(() => {
+    if (!searchParams.get('query')) return;
+
+    const getMovies = async () => {
+      const movies = await api.fetchMoviesByQuery(searchParams.get('query'));
+      setMovieList(movies);
+    };
+    getMovies();
+  }, [searchParams]);
 
   const handleInput = e => {
     const name = e.target.value.toLowerCase().trim();
     setMovieName(name);
-    console.log(movieName);
   };
 
   const handleFormSubmit = async e => {
     e.preventDefault();
     const nextParams = movieName !== '' ? { query: movieName } : {};
     setSearchParams(nextParams);
-    const movies = await api.fetchMoviesByQuery(movieName);
-    setMovieList(movies);
+    // const movies = await api.fetchMoviesByQuery(movieName);
+    // setMovieList(movies);
     setMovieName('');
   };
 
@@ -52,7 +62,7 @@ export const Movies = () => {
 
             return (
               <li key={id}>
-                <NavLink to={`/movies/${id}`}>
+                <NavLink to={`/movies/${id}`} state={{ from: location }}>
                   <Box display="flex" gridGap={10}>
                     <img
                       src={imgUrl}

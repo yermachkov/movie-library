@@ -1,13 +1,13 @@
 import { useEffect, useState } from 'react';
 import { Box } from 'components/Box';
-import { Link, Outlet, useParams } from 'react-router-dom';
+import { Link, Outlet, useParams, useLocation } from 'react-router-dom';
 
 import api from 'services/movies-api';
 
 export const MovieDetails = () => {
   const [movie, setMovie] = useState(null);
   const { movieId } = useParams();
-  // const location = useLocation();
+  const location = useLocation();
 
   useEffect(() => {
     api.fetchMovieById(movieId).then(movie => setMovie(movie));
@@ -29,7 +29,10 @@ export const MovieDetails = () => {
   return (
     <main>
       <div>
-        <button>Go back</button>
+        <Link to={location.state.from}>
+          <button>Go back</button>
+        </Link>
+
         <Box display="flex" gridGap={15}>
           <img src={imgUrl} alt={`The poster of ${title}`} width={300} />
           <div>

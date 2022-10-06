@@ -1,9 +1,9 @@
 import { Box } from 'components/Box';
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import api from '../../services/movies-api';
+import api from '../services/movies-api';
 
-export const Home = () => {
+const Home = () => {
   const [trendingList, setTrendingList] = useState(null);
   const location = useLocation();
 
@@ -49,3 +49,5 @@ export const Home = () => {
     </div>
   );
 };
+
+export default Home;

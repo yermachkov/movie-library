@@ -1,10 +1,10 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, Suspense } from 'react';
 import { Box } from 'components/Box';
 import { Link, Outlet, useParams, useLocation } from 'react-router-dom';
 
 import api from 'services/movies-api';
 
-export const MovieDetails = () => {
+const MovieDetails = () => {
   const [movie, setMovie] = useState(null);
   const { movieId } = useParams();
   const location = useLocation();
@@ -55,34 +55,12 @@ export const MovieDetails = () => {
             <Link to="reviews">Reviews</Link>
           </li>
         </ul>
-        <Outlet />
+        <Suspense fallback={<div>Loading...</div>}>
+          <Outlet />
+        </Suspense>
       </div>
     </main>
   );
 };
 
-//     <>
-//       <Link to={location?.state?.from ?? '/'}>
-//         <BtnGoBack type="button">
-//           <AiOutlineArrowLeft size={28} />
-//         </BtnGoBack>
-//       </Link>
-//
-//       <AdditionalList>
-//         <Item>
-//           <NavItem to="cast" state={location.state}>
-//             <BiUser size={20} />
-//             CAST
-//           </NavItem>
-//         </Item>
-//         <Item>
-//           <NavItem to="reviews" state={location.state}>
-//             <BsListNested size={20} />
-//             REVIEWS
-//           </NavItem>
-//         </Item>
-//       </AdditionalList>
-//       <Outlet />
-//     </>
-//   );
-// };
+export default MovieDetails;

@@ -3,7 +3,7 @@ import { useSearchParams, NavLink, useLocation } from 'react-router-dom';
 import api from 'services/movies-api';
 import { Box } from 'components/Box';
 
-export const Movies = () => {
+const Movies = () => {
   const [movieList, setMovieList] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams();
   const [movieName, setMovieName] = useState(searchParams.get('query') ?? '');
@@ -27,9 +27,7 @@ export const Movies = () => {
   const handleFormSubmit = async e => {
     e.preventDefault();
     const nextParams = movieName !== '' ? { query: movieName } : {};
-    setSearchParams(nextParams);
-    // const movies = await api.fetchMoviesByQuery(movieName);
-    // setMovieList(movies);
+    if (nextParams) setSearchParams(nextParams);
     setMovieName('');
   };
 
@@ -84,3 +82,5 @@ export const Movies = () => {
     </main>
   );
 };
+
+export default Movies;

@@ -9,6 +9,8 @@ const MovieDetails = () => {
   const { movieId } = useParams();
   const location = useLocation();
 
+  const backLinkHref = location.state?.from ?? './Movies.jsx';
+
   useEffect(() => {
     api.fetchMovieById(movieId).then(movie => setMovie(movie));
   }, [movieId]);
@@ -29,7 +31,7 @@ const MovieDetails = () => {
   return (
     <main>
       <div>
-        <Link to={location.state.from}>
+        <Link to={backLinkHref}>
           <button>Go back</button>
         </Link>
 

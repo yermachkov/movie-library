@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useSearchParams, NavLink, useLocation } from 'react-router-dom';
+import { useSearchParams, Link, useLocation } from 'react-router-dom';
 import api from 'services/movies-api';
 import { Box } from 'components/Box';
 
@@ -60,7 +60,7 @@ const Movies = () => {
 
             return (
               <li key={id}>
-                <NavLink to={`/movies/${id}`} state={{ from: location }}>
+                <Link to={`/movies/${id}`} state={{ from: location }}>
                   <Box display="flex" gridGap={10}>
                     <img
                       src={imgUrl}
@@ -74,7 +74,7 @@ const Movies = () => {
                       <p>{release}</p>
                     </div>
                   </Box>
-                </NavLink>
+                </Link>
               </li>
             );
           })}

@@ -8,8 +8,7 @@ const MovieDetails = () => {
   const [movie, setMovie] = useState(null);
   const { movieId } = useParams();
   const location = useLocation();
-
-  const backLinkHref = location.state?.from ?? './Movies.jsx';
+  const backLinkHref = location.state?.from ?? '/home';
 
   useEffect(() => {
     api.fetchMovieById(movieId).then(movie => setMovie(movie));
@@ -25,7 +24,6 @@ const MovieDetails = () => {
     : 'https://via.placeholder.com/395x574?text=No+poster';
 
   const release = release_date ? release_date.slice(0, 4) : 'No release date';
-
   const score = (vote_average * 10).toFixed(0);
 
   return (
@@ -51,10 +49,14 @@ const MovieDetails = () => {
         <h4>Additional information</h4>
         <ul>
           <li>
-            <Link to="cast">Cast</Link>
+            <Link to="cast" state={{ from: location.state.from }}>
+              Cast
+            </Link>
           </li>
           <li>
-            <Link to="reviews">Reviews</Link>
+            <Link to="reviews" state={{ from: location.state.from }}>
+              Reviews
+            </Link>
           </li>
         </ul>
         <Suspense fallback={<div>Loading...</div>}>

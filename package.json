@@ -1,8 +1,8 @@
 {
-  "name": "goit-react-hw-05-movies",
+  "name": "movie-library",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://yermachkov.github.io/goit-react-hw-05-movies/",
+  "homepage": "https://yermachkov.github.io/movie-library/",
   "dependencies": {
     "@emotion/styled": "^11.10.4",
     "@testing-library/jest-dom": "^5.16.3",
